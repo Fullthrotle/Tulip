@@ -1,0 +1,87 @@
+
+
+#============= fsck ==============
+allow fsck block_device:blk_file { ioctl open read write };
+
+#============= hal_camera_default ==============
+allow hal_camera_default vendor_default_prop:property_service set;
+
+#============= hal_fingerprint_default ==============
+allow hal_fingerprint_default fingerprint_prop:property_service set;
+allow hal_fingerprint_default vendor_system_prop:property_service set;
+
+#============= hal_mlipay_default ==============
+allow hal_mlipay_default exported3_default_prop:file { open read };
+
+#============= hal_sensors_default ==============
+allow hal_sensors_default vendor_default_prop:property_service set;
+
+#============= init ==============
+allow init sysfs_graphics:file { open write };
+
+#============= kernel ==============
+allow kernel vfat:file open;
+
+#============= qti_init_shell ==============
+allow qti_init_shell debug_prop:property_service set;
+allow qti_init_shell default_prop:file { open read };
+allow qti_init_shell default_prop:property_service set;
+allow qti_init_shell exported3_default_prop:property_service set;
+allow qti_init_shell exported_system_radio_prop:file { getattr open read };
+allow qti_init_shell exported_system_radio_prop:property_service set;
+allow qti_init_shell radio_prop:property_service set;
+allow qti_init_shell self:capability dac_override;
+
+#============= radio ==============
+allow radio vendor_file:file { execute getattr open read };
+
+#============= rfs_access ==============
+allow rfs_access vfat:dir search;
+allow rfs_access vfat:file { getattr open read };
+
+#============= rild ==============
+allow rild default_prop:file read;
+
+#============= system_server ==============
+allow system_server dalvikcache_data_file:file execute;
+allow system_server init:binder call;
+allow system_server sysfs:file { getattr open read };
+allow system_server vendor_file:file read;
+
+#============= tee ==============
+allow tee vendor_data_file:file { open read };
+
+#============= thermal-engine ==============
+allow thermal-engine system_prop:property_service set;
+
+#============= ueventd ==============
+allow ueventd vfat:dir search;
+allow ueventd vfat:file { getattr open read };
+
+#============= untrusted_app ==============
+allow untrusted_app proc_vmstat:file { getattr open };
+
+#============= untrusted_app_27 ==============
+allow untrusted_app_27 kernel:system syslog_read;
+allow untrusted_app_27 proc_vmstat:file { getattr open };
+allow untrusted_app_27 rootfs:dir { open read };
+
+#============= vendor_init ==============
+allow vendor_init bluetooth_prop:property_service set;
+allow vendor_init bservice_prop:property_service set;
+allow vendor_init camera_data_file:dir setattr;
+allow vendor_init config_prop:property_service set;
+allow vendor_init default_prop:property_service set;
+allow vendor_init dhcp_data_file:dir setattr;
+allow vendor_init dpmd_data_file:dir setattr;
+allow vendor_init exported_secure_prop:property_service set;
+allow vendor_init fm_prop:property_service set;
+allow vendor_init mm_parser_prop:property_service set;
+allow vendor_init overlay_prop:property_service set;
+allow vendor_init radio_prop:property_service set;
+allow vendor_init system_data_file:dir { add_name setattr write };
+allow vendor_init wifi_data_file:dir setattr;
+allow vendor_init wpa_socket:dir setattr;
+
+#============= webview_zygote ==============
+allow webview_zygote zygote:unix_dgram_socket write;
